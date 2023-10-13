@@ -1,148 +1,131 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 
-export const config = {
-  runtime: "edge",
-};
-
 export default function handler(req: VercelRequest, res: VercelResponse) {
   const subDomain = getSubdomain(req.headers.host ?? "");
 
-  return new Response(
-    html`
-      <!doctype html>
-      <html lang="en">
-        <head>
-          <title>${getStatement(subDomain)}</title>
-          <meta charset="utf-8" />
-          <meta name="description" content="eventuelt, kort fortalt" />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
-          />
-          <link
-            rel="icon"
-            type="image/png"
-            href="https://karl.run/favicon.ico"
-          />
-          <style>
-            html {
-              box-sizing: border-box;
-              font-size: 16px;
-            }
+  res.setHeader("Content-Type", "text/html");
+  res.setHeader("Cache-Control", "s-maxage=1, stale-while-revalidate");
 
-            *,
-            *:before,
-            *:after {
-              box-sizing: inherit;
-            }
+  return res.send(html`
+    <!doctype html>
+    <html lang="en">
+      <head>
+        <title>${getStatement(subDomain)}</title>
+        <meta charset="utf-8" />
+        <meta name="description" content="eventuelt, kort fortalt" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/png" href="https://karl.run/favicon.ico" />
+        <style>
+          html {
+            box-sizing: border-box;
+            font-size: 16px;
+          }
 
-            body,
-            h1,
-            h2,
-            h3,
-            h4,
-            h5,
-            h6,
-            p,
-            ol,
-            ul {
-              margin: 0;
-              padding: 0;
-              font-weight: normal;
-            }
+          *,
+          *:before,
+          *:after {
+            box-sizing: inherit;
+          }
 
-            ol,
-            ul {
-              list-style: none;
-            }
+          body,
+          h1,
+          h2,
+          h3,
+          h4,
+          h5,
+          h6,
+          p,
+          ol,
+          ul {
+            margin: 0;
+            padding: 0;
+            font-weight: normal;
+          }
 
-            img {
-              max-width: 100%;
-              height: auto;
-            }
+          ol,
+          ul {
+            list-style: none;
+          }
 
-            html {
-              font-family: sans-serif;
-              background-color: black;
-              color: white;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              height: 100vh;
-              height: 100svh;
-            }
-            body {
-              max-width: 600px;
-              margin: 0 auto;
-              padding: 1rem;
-            }
-            h1 {
-              font-size: 2rem;
-              margin-bottom: 4px;
-            }
+          img {
+            max-width: 100%;
+            height: auto;
+          }
 
-            a {
-              color: unset;
-              display: block;
-              text-decoration: none;
-              margin-bottom: 2px;
-            }
+          html {
+            font-family: sans-serif;
+            background-color: black;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            height: 100svh;
+          }
+          body {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 1rem;
+          }
+          h1 {
+            font-size: 2rem;
+            margin-bottom: 4px;
+          }
 
-            a:last-of-type {
-              margin-top: 8px;
-            }
+          a {
+            color: unset;
+            display: block;
+            text-decoration: none;
+            margin-bottom: 2px;
+          }
 
-            .green {
-              color: green;
-            }
+          a:last-of-type {
+            margin-top: 8px;
+          }
 
-            .red {
-              color: red;
-            }
+          .green {
+            color: green;
+          }
 
-            .bold {
-              font-weight: bold;
-              font-size: 1.2rem;
-            }
-          </style>
-        </head>
-        <body>
-          <h1>eventuelt, kort fortalt:</h1>
-          <a
-            href="https://ev.karl.run"
-            class="${subDomain === "ev" ? "bold" : ""}"
-          >
-            <span class="green">✓</span> ev. - eventuelt
-          </a>
-          <a
-            href="https://evt.karl.run"
-            class="${subDomain === "evt" ? "bold" : ""}"
-          >
-            <span class="red">✗</span> evt. - etter vår tidsregning
-          </a>
-          <a
-            href="https://evnt.karl.run"
-            class="${subDomain === "evnt" ? "bold" : ""}"
-          >
-            <span class="red">✗</span> evnt. - ???
-          </a>
-          <a
-            href="https://eventuelt.karl.run"
-            class="${subDomain === "eventuelt" ? "bold" : ""}"
-          >
-            <span class="green">✓</span> eventuelt - ev. bare skriv hele ordet
-            :)
-          </a>
-        </body>
-      </html>
-    `,
-    {
-      headers: {
-        "content-type": "text/html;charset=UTF-8",
-        "Cache-Control": "s-maxage=1, stale-while-revalidate",
-      },
-    }
-  );
+          .red {
+            color: red;
+          }
+
+          .bold {
+            font-weight: bold;
+            font-size: 1.2rem;
+          }
+        </style>
+      </head>
+      <body>
+        <h1>eventuelt, kort fortalt:</h1>
+        <a
+          href="https://ev.karl.run"
+          class="${subDomain === "ev" ? "bold" : ""}"
+        >
+          <span class="green">✓</span> ev. - eventuelt
+        </a>
+        <a
+          href="https://evt.karl.run"
+          class="${subDomain === "evt" ? "bold" : ""}"
+        >
+          <span class="red">✗</span> evt. - etter vår tidsregning
+        </a>
+        <a
+          href="https://evnt.karl.run"
+          class="${subDomain === "evnt" ? "bold" : ""}"
+        >
+          <span class="red">✗</span> evnt. - ???
+        </a>
+        <a
+          href="https://eventuelt.karl.run"
+          class="${subDomain === "eventuelt" ? "bold" : ""}"
+        >
+          <span class="green">✓</span> eventuelt - ev. bare skriv hele ordet :)
+        </a>
+      </body>
+    </html>
+  `);
 }
 
 function getStatement(type: ReturnType<typeof getSubdomain>): string {
