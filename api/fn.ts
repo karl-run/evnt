@@ -44,6 +44,10 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
             margin-bottom: 2px;
           }
 
+          a:last-of-type {
+            margin-top: 8px;
+          }
+
           .green {
             color: green;
           }
@@ -78,6 +82,12 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
         >
           <span class="red">✗</span> evnt. - ???
         </a>
+        <a
+          href="https://eventuelt.karl.run"
+          class="${subDomain === "eventuelt" ? "bold" : ""}"
+        >
+        <span class="green">✓</span> eventuelt - ev. bare skriv hele ordet :)
+        </a>
       </body>
     </html>
   `);
@@ -91,14 +101,17 @@ function getStatement(type: ReturnType<typeof getSubdomain>): string {
       return 'evt. er forkortelse for "etter vår tidsregning"';
     case "evnt":
       return "evnt. er ikke en forkortelse";
+    case "eventuelt":
+      return "eventuelt er fint å skrive :)";
   }
 }
 
-function getSubdomain(host: string): "ev" | "evt" | "evnt" {
+function getSubdomain(host: string): "ev" | "evt" | "evnt" | "eventuelt" {
   if (!host || host.includes("localhost")) return "evt";
   else if (host.includes("ev.")) return "ev";
   else if (host.includes("evt.")) return "evt";
   else if (host.includes("evnt.")) return "evnt";
+  else if (host.includes("eventuelt.")) return "eventuelt";
   else return "evnt";
 }
 
