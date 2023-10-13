@@ -11,6 +11,8 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
     <html lang="en">
       <head>
         <title>${getStatement(subDomain)}</title>
+        <meta charset="utf-8" />
+        <meta name="description" content="eventuelt, kort fortalt" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link
           href=" https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css "
