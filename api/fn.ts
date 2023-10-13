@@ -14,11 +14,44 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
         <meta charset="utf-8" />
         <meta name="description" content="eventuelt, kort fortalt" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link
-          href=" https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css "
-          rel="stylesheet"
-        />
+        <link rel="icon" type="image/png" href="https://karl.run/favicon.ico" />
         <style>
+          html {
+            box-sizing: border-box;
+            font-size: 16px;
+          }
+
+          *,
+          *:before,
+          *:after {
+            box-sizing: inherit;
+          }
+
+          body,
+          h1,
+          h2,
+          h3,
+          h4,
+          h5,
+          h6,
+          p,
+          ol,
+          ul {
+            margin: 0;
+            padding: 0;
+            font-weight: normal;
+          }
+
+          ol,
+          ul {
+            list-style: none;
+          }
+
+          img {
+            max-width: 100%;
+            height: auto;
+          }
+
           html {
             font-family: sans-serif;
             background-color: black;
@@ -88,7 +121,7 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
           href="https://eventuelt.karl.run"
           class="${subDomain === "eventuelt" ? "bold" : ""}"
         >
-        <span class="green">✓</span> eventuelt - ev. bare skriv hele ordet :)
+          <span class="green">✓</span> eventuelt - ev. bare skriv hele ordet :)
         </a>
       </body>
     </html>
