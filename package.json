@@ -1,15 +1,15 @@
 {
   "name": "evnt",
-  "module": "index.ts",
+  "packageManager": "yarn@4.14.1",
   "type": "module",
-  "dependencies": {
-    "@vercel/node": "^3.0.7"
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev"
   },
   "devDependencies": {
-    "bun-types": "latest",
-    "prettier": "^3.0.3"
+    "prettier": "^3.0.3",
+    "wrangler": "^4.14.4",
+    "@karl-run/prettier-config": "^1.1.0"
   },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  }
+  "prettier": "@karl-run/prettier-config"
 }

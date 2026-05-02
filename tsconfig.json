@@ -1,21 +1,13 @@
 {
   "compilerOptions": {
-    "lib": ["ESNext"],
+    "lib": ["ESNext", "DOM", "WebWorker"],
     "module": "esnext",
     "target": "esnext",
-    "moduleResolution": "Node",
-    "moduleDetection": "force",
+    "moduleResolution": "Bundler",
     "noEmit": true,
-    "composite": true,
     "strict": true,
-    "downlevelIteration": true,
-    "skipLibCheck": true,
-    "jsx": "react-jsx",
-    "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
-    "allowJs": true,
-    "types": [
-      "bun-types" // add Bun global
-    ]
-  }
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*.ts"]
 }

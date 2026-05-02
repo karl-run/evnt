@@ -1,0 +1,28 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "evnt",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-05-02",
+  "workers_dev": false,
+  "assets": {
+    "directory": "./public",
+  },
+  "routes": [
+    {
+      "pattern": "ev.karl.run",
+      "custom_domain": true,
+    },
+    {
+      "pattern": "evt.karl.run",
+      "custom_domain": true,
+    },
+    {
+      "pattern": "evnt.karl.run",
+      "custom_domain": true,
+    },
+    {
+      "pattern": "eventuelt.karl.run",
+      "custom_domain": true,
+    },
+  ],
+}
